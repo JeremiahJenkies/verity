@@ -48,6 +48,30 @@ section.content{padding:110px 7vw}.section-head{display:flex;align-items:flex-en
 .empty-state{padding:24px 10px;text-align:center;color:#77766e;font:10px 'DM Mono',monospace;border:1px dashed #ffffff1c}
 @media(max-width:760px){.server-grid{grid-template-columns:1fr}.server-panel{padding:20px}}
 
+
+/* Expanded lore archive */
+.archive-section{background:#0a0b0a}
+.archive-layout{display:grid;grid-template-columns:1fr .82fr;gap:40px;align-items:start}
+.timeline{border-top:1px solid var(--line)}
+.timeline-item{display:grid;grid-template-columns:92px 1fr;gap:18px;padding:23px 0;border-bottom:1px solid var(--line)}
+.timeline-year{font:10px 'DM Mono',monospace;color:var(--yellow);letter-spacing:.1em;padding-top:3px}
+.timeline-item h3{font-size:16px;letter-spacing:-.04em;margin:0 0 7px}
+.timeline-item p{font-size:12px;color:#929189;line-height:1.8;margin:0;max-width:490px}
+.dossier{border:1px solid #ffda3533;background:radial-gradient(ellipse at 80% 0%,#ffda3512,transparent 55%),#ffffff04;padding:25px;position:relative;overflow:hidden}
+.dossier:after{content:"V";position:absolute;right:-13px;top:-52px;font-size:230px;line-height:1;font-weight:800;color:#ffda3508;pointer-events:none}
+.dossier-top{display:flex;justify-content:space-between;gap:15px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:17px}
+.dossier-id{font:9px 'DM Mono',monospace;color:var(--yellow);letter-spacing:.14em}
+.dossier-badge{font:8px 'DM Mono',monospace;border:1px solid #ffffff25;padding:7px 9px;color:#a6a49a}
+.dossier h3{font-size:28px;letter-spacing:-.07em;margin:22px 0 7px}
+.dossier-sub{font:9px 'DM Mono',monospace;color:#8b8980;letter-spacing:.1em;text-transform:uppercase}
+.dossier-copy{font-size:12px;line-height:1.9;color:#aaa89e;margin:17px 0 22px;position:relative;z-index:1}
+.dossier-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative;z-index:1}
+.dossier-stat{padding:12px;background:#0003;border:1px solid #ffffff10}
+.dossier-stat strong{display:block;font-size:13px;color:#f0e4ad;margin-bottom:5px}
+.dossier-stat span{font:8px 'DM Mono',monospace;color:#85837a;letter-spacing:.08em;text-transform:uppercase}
+.archive-note{font:9px 'DM Mono',monospace;color:#76746b;margin-top:17px;line-height:1.8}
+@media(max-width:760px){.archive-layout{grid-template-columns:1fr}.timeline-item{grid-template-columns:72px 1fr}.dossier{padding:21px}}
+
 </style>
 </head>
 <body>
@@ -63,6 +87,9 @@ section.content{padding:110px 7vw}.section-head{display:flex;align-items:flex-en
 <article class="card reveal"><div class="card-num">POWER 002 / COSMIC</div><div class="card-art"><div class="ring-icon"></div></div><h3>Orbital presence</h3><p>One small sphere. Gravitational pull of a main character. You looked at the ball. The ball won.</p></article>
 <article class="card reveal"><div class="card-num">POWER 003 / SOCIAL</div><div class="card-art"><div class="face-icon">• ‿ •</div></div><h3>Face card: undefeated</h3><p>Two eyes. One smile. No thoughts detected. Somehow the most charismatic entity in the room.</p></article>
 </div></section>
+
+<section class="content archive-section" id="archive"><div class="section-head reveal"><div><div class="kicker">01.5 / The classified archive</div><h2>Before the legend.<br>There was a ball.</h2></div><p>Every icon has an origin story. Verity’s is still being written — one bounce, one brilliant idea, and one suspiciously perfect sphere at a time.</p></div><div class="archive-layout"><div class="timeline reveal"><article class="timeline-item"><div class="timeline-year">CHAPTER 00</div><div><h3>The first glimmer</h3><p>Somewhere between a passing thought and a ridiculous idea, a tiny yellow sphere became something worth building an entire universe around.</p></div></article><article class="timeline-item"><div class="timeline-year">CHAPTER 01</div><div><h3>The golden era begins</h3><p>The colour was chosen: unmistakable, warm, impossible to ignore. The shine came next. The aura was apparently included at no extra cost.</p></div></article><article class="timeline-item"><div class="timeline-year">CHAPTER 02</div><div><h3>Contact with the cosmos</h3><p>Orbit lines, distant stars, cinematic lighting. Verity had not changed in size — only in the amount of lore surrounding it.</p></div></article><article class="timeline-item"><div class="timeline-year">CHAPTER 03</div><div><h3>The legend goes online</h3><p>A home for the sphere, built with an interactive 3D scene and a Python-powered guestbook. Now the universe can leave a message back.</p></div></article><article class="timeline-item"><div class="timeline-year">NEXT UP</div><div><h3>The story is yours too</h3><p>Drop a note in the Verity network below. Every kind transmission becomes part of the living archive.</p></div></article></div><aside class="dossier reveal"><div class="dossier-top"><span class="dossier-id">VERITY LABS / ENTITY FILE</span><span class="dossier-badge">CLASSIFICATION: ICON</span></div><h3>VERITY-001</h3><div class="dossier-sub">Spherical life-form · Gold class</div><p class="dossier-copy">A cheerful, high-gloss orb with an unusually strong gravitational pull on attention. It appears to thrive on sunlight, positive energy, and being appreciated. Scientific understanding remains limited; vibes-based research continues.</p><div class="dossier-stats"><div class="dossier-stat"><strong>∞ / 10</strong><span>Aura index</span></div><div class="dossier-stat"><strong>100%</strong><span>Roundness</span></div><div class="dossier-stat"><strong>2 eyes</strong><span>Known sensors</span></div><div class="dossier-stat"><strong>0 thoughts*</strong><span>Estimated brain activity</span></div></div><p class="archive-note">*The subject disputes this finding. No further comment was provided.</p></aside></div></section>
+
 <section class="content manifesto" id="vision"><div class="reveal"><div class="kicker">02 / The vision</div><h2>Stay round.<br>Stay golden.</h2><p class="manifesto-copy">The world is complicated enough. Verity's mission is simple: turn up, shine bright, and remind everyone that little things can have the biggest personality.</p><p class="quote">“In a world full of angles, be your own little circle.”</p></div><div class="manifesto-art reveal"><div class="manifesto-ball"></div><div class="fig">FIG. 001 — THE ORIGINAL VERITY</div></div></section>
 
 <section class="content server-section" id="guestbook"><div class="section-head reveal"><div><div class="kicker">03 / The Verity network</div><h2>A tiny orb.<br>A real server.</h2></div><p>This section talks to a Python Flask backend. Stats are read from the server, quotes come from an API, and guestbook messages are saved in a local SQLite database.</p></div>
