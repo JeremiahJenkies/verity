@@ -18,11 +18,41 @@ section.content{padding:110px 7vw}.section-head{display:flex;align-items:flex-en
 @media(max-width:850px){.nav{padding:0 5vw}.navlinks{gap:15px}.hero{grid-template-columns:1fr;padding:58px 7vw 70px}.stage{height:480px;min-height:400px}.orbit{width:350px}.section-head{align-items:flex-start;flex-direction:column}.cards{grid-template-columns:1fr 1fr}.manifesto{grid-template-columns:1fr;gap:15px}.manifesto-art{min-height:290px}section.content{padding:85px 7vw}}
 @media(max-width:540px){.nav{height:66px}.navlinks{display:none}.hero{padding-top:54px}.hero h1{font-size:clamp(4rem,18vw,6rem)}.intro{font-size:13px}.stage{height:390px;min-height:350px;margin:0 -5vw}.orbit{width:285px}.float-label{right:5%;top:9%}.side-label{left:4%}.stage-help{bottom:0;font-size:8px}.hero-foot,.hero-num{font-size:8px}.cards{grid-template-columns:1fr}.card{min-height:235px}.manifesto-art{min-height:255px}.manifesto-ball{min-width:185px}.footer{flex-wrap:wrap}.footer>span{width:100%;order:3}.section-head p{font-size:12px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+/* Server-backed Verity terminal + guestbook */
+.server-section{background:radial-gradient(ellipse at 50% 0%,#5e4b171b,transparent 55%),#0b0c0b}
+.server-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:14px}
+.server-panel{border:1px solid var(--line);background:linear-gradient(145deg,#ffffff08,transparent 75%);padding:25px;min-width:0}
+.panel-label{font:9px 'DM Mono',monospace;color:var(--yellow);letter-spacing:.16em;text-transform:uppercase}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.stat-box{padding:18px 15px;background:#ffffff05;border:1px solid #ffffff12}
+.stat-value{display:block;font-size:clamp(1.7rem,4vw,2.7rem);font-weight:800;letter-spacing:-.07em;margin:7px 0}
+.stat-caption{font:9px 'DM Mono',monospace;color:#8c8b83;text-transform:uppercase;letter-spacing:.1em}
+.status-line{display:flex;align-items:center;gap:8px;font:10px 'DM Mono',monospace;color:#a8a69b;margin-top:20px}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#83e6a3;box-shadow:0 0 12px #83e6a388}
+.quote-box{margin-top:18px;padding:17px;border-left:2px solid var(--yellow);background:#ffda3508;color:#d8d5c9;font-size:13px;line-height:1.8}
+.small-action{border:1px solid #ffffff22;background:transparent;color:#d8d5c9;padding:10px 13px;margin-top:14px;font:9px 'DM Mono',monospace;letter-spacing:.1em}
+.small-action:hover{border-color:var(--yellow);color:var(--yellow)}
+.guest-form{display:grid;gap:10px;margin-top:17px}
+.guest-form input,.guest-form textarea{width:100%;background:#070807;border:1px solid #ffffff20;color:var(--fg);padding:13px;font:12px Manrope,system-ui,sans-serif;outline:none;border-radius:2px}
+.guest-form input:focus,.guest-form textarea:focus{border-color:#ffda3588}
+.guest-form textarea{min-height:88px;resize:vertical}
+.form-meta{display:flex;justify-content:space-between;gap:10px;color:#77766e;font:9px 'DM Mono',monospace}
+.form-status{min-height:18px;color:var(--yellow);font:10px 'DM Mono',monospace;line-height:1.6}
+.guest-list{display:grid;gap:9px;margin-top:20px}
+.guest-entry{padding:13px 14px;border:1px solid #ffffff12;background:#ffffff04}
+.guest-entry-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.guest-entry-name{font-size:11px;font-weight:800;color:#f3e6a8;overflow-wrap:anywhere}
+.guest-entry-time{font:8px 'DM Mono',monospace;color:#77766e}
+.guest-entry-message{font-size:11px;line-height:1.75;color:#b3b1a7;margin-top:6px;overflow-wrap:anywhere;white-space:pre-wrap}
+.empty-state{padding:24px 10px;text-align:center;color:#77766e;font:10px 'DM Mono',monospace;border:1px dashed #ffffff1c}
+@media(max-width:760px){.server-grid{grid-template-columns:1fr}.server-panel{padding:20px}}
+
 </style>
 </head>
 <body>
 <div class="noise"></div>
-<header class="nav"><a class="logo" href="#home"><span class="logo-dot"></span> VERITY®</a><nav class="navlinks"><a href="#lore">The lore</a><a href="#powers">Ball powers</a><a href="#vision">The vision</a></nav><a class="pill" href="#meet">MEET THE LEGEND ↗</a></header>
+<header class="nav"><a class="logo" href="#home"><span class="logo-dot"></span> VERITY®</a><nav class="navlinks"><a href="#lore">The lore</a><a href="#powers">Ball powers</a><a href="#vision">The vision</a><a href="#guestbook">Guestbook</a></nav><a class="pill" href="#meet">MEET THE LEGEND ↗</a></header>
 <main>
 <section class="hero" id="home"><div class="copy"><div class="eyebrow">A tiny icon. A massive aura.</div><h1>SMALL BALL.<br><span class="stroke">BIG</span> ENERGY.</h1><p class="intro">Meet Verity. One little yellow ball with main-character energy, an unreasonable amount of shine, and absolutely zero thoughts behind those eyes.</p><div class="actions"><a class="primary" href="#lore">ENTER THE VERSE <span>↗</span></a><a class="plainlink" href="#powers">DISCOVER THE LORE <b>↓</b></a></div></div>
 <div class="stage" id="meet"><div class="orbit"></div><canvas id="scene" aria-label="Interactive, glossy 3D yellow Verity ball"></canvas><span class="spark sp1">✦</span><span class="spark sp2">✧</span><span class="spark sp3">✦</span><div class="float-label"><strong>VERITY // 001</strong>VIBE LEVEL: MAX<br>THOUGHTS: NONE<br>AURA: UNLIMITED</div><div class="side-label">CERTIFIED SPHERE OF CHAOS</div><div class="stage-help">MOVE YOUR CURSOR TO ROTATE THE ORB · CLICK TO BOOP</div></div>
@@ -34,6 +64,13 @@ section.content{padding:110px 7vw}.section-head{display:flex;align-items:flex-en
 <article class="card reveal"><div class="card-num">POWER 003 / SOCIAL</div><div class="card-art"><div class="face-icon">• ‿ •</div></div><h3>Face card: undefeated</h3><p>Two eyes. One smile. No thoughts detected. Somehow the most charismatic entity in the room.</p></article>
 </div></section>
 <section class="content manifesto" id="vision"><div class="reveal"><div class="kicker">02 / The vision</div><h2>Stay round.<br>Stay golden.</h2><p class="manifesto-copy">The world is complicated enough. Verity's mission is simple: turn up, shine bright, and remind everyone that little things can have the biggest personality.</p><p class="quote">“In a world full of angles, be your own little circle.”</p></div><div class="manifesto-art reveal"><div class="manifesto-ball"></div><div class="fig">FIG. 001 — THE ORIGINAL VERITY</div></div></section>
+
+<section class="content server-section" id="guestbook"><div class="section-head reveal"><div><div class="kicker">03 / The Verity network</div><h2>A tiny orb.<br>A real server.</h2></div><p>This section talks to a Python Flask backend. Stats are read from the server, quotes come from an API, and guestbook messages are saved in a local SQLite database.</p></div>
+<div class="server-grid">
+<div class="server-panel reveal"><div class="panel-label">LIVE SYSTEM TELEMETRY</div><div class="status-line"><span class="status-dot" id="serverDot"></span><span id="serverStatus">CONNECTING TO VERITY SERVER…</span></div><div class="stat-row"><div class="stat-box"><span class="stat-caption">Page visits</span><strong class="stat-value" id="visitCount">—</strong><span class="stat-caption">Recorded by Flask</span></div><div class="stat-box"><span class="stat-caption">Guestbook notes</span><strong class="stat-value" id="messageCount">—</strong><span class="stat-caption">Stored with SQLite</span></div></div><div class="panel-label" style="margin-top:25px">THE ORACLE SAYS</div><div class="quote-box" id="quoteText">Contacting the Verity oracle…</div><button class="small-action" type="button" id="quoteButton">GENERATE ANOTHER QUOTE ↻</button></div>
+<div class="server-panel reveal"><div class="panel-label">PUBLIC TRANSMISSIONS / GUESTBOOK</div><p style="color:#a5a49d;font-size:12px;line-height:1.8;margin:12px 0 0">Leave a message for the next visitor. Keep it kind and do not post private information — entries appear publicly on this page.</p><form class="guest-form" id="guestForm"><input id="guestName" name="name" maxlength="24" placeholder="Your display name" autocomplete="nickname" required><textarea id="guestMessage" name="message" maxlength="240" placeholder="Leave a little golden wisdom…" required></textarea><div class="form-meta"><span>MAX 240 CHARACTERS</span><span id="charCount">0 / 240</span></div><button class="primary" type="submit" id="guestSubmit">TRANSMIT MESSAGE <span>↗</span></button><div class="form-status" id="formStatus" role="status" aria-live="polite"></div></form><div class="guest-list" id="guestList"><div class="empty-state">LOADING TRANSMISSIONS…</div></div></div>
+</div></section>
+
 <section class="content final" id="secret-zone"><div class="eyebrow">End of transmission</div><h2 class="reveal">LONG LIVE<br><span>VERITY.</span></h2><p class="reveal">A little yellow dot in a very big universe. Somehow, still the main event.</p><button class="easter" id="secretButton">✦ UNLOCK CLASSIFIED VERITY LORE</button><div class="secret" id="secretText">CLASSIFIED FILE 001: Verity has achieved perfect spherical form. Its only weakness is being called a lemon. Please do not tell the ball.</div><div style="margin-top:28px"><a class="primary" href="#home">BACK TO THE ORB ↑</a></div></section>
 </main>
 <footer class="footer"><a class="logo" href="#home"><span class="logo-dot"></span> VERITY®</a><span>AN UNREASONABLY ICONIC LITTLE BALL</span><span>© <span id="year"></span> VERITY LABS</span><a class="top" href="#home">↑ TOP</a></footer>
@@ -80,5 +117,47 @@ function init3D(){
 if(!reduce)init3D();else init3D();
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.14});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 document.getElementById('secretButton').addEventListener('click',()=>{document.getElementById('secretText').classList.toggle('show');});
+
+/* Flask API integration: all user-generated content is rendered as text, never HTML. */
+const visitCountEl=document.getElementById('visitCount');
+const messageCountEl=document.getElementById('messageCount');
+const serverStatusEl=document.getElementById('serverStatus');
+const serverDot=document.getElementById('serverDot');
+const guestListEl=document.getElementById('guestList');
+const guestForm=document.getElementById('guestForm');
+const guestMessage=document.getElementById('guestMessage');
+const charCount=document.getElementById('charCount');
+const formStatus=document.getElementById('formStatus');
+function makeGuestEntry(entry){
+ const article=document.createElement('article');article.className='guest-entry';
+ const head=document.createElement('div');head.className='guest-entry-head';
+ const name=document.createElement('strong');name.className='guest-entry-name';name.textContent=entry.name;
+ const time=document.createElement('span');time.className='guest-entry-time';time.textContent=entry.created_at||'JUST NOW';
+ const message=document.createElement('div');message.className='guest-entry-message';message.textContent=entry.message;
+ head.append(name,time);article.append(head,message);return article;
+}
+async function loadStats(){
+ try{const response=await fetch('/api/stats');if(!response.ok)throw new Error('offline');const data=await response.json();visitCountEl.textContent=Number(data.visits).toLocaleString();messageCountEl.textContent=Number(data.messages).toLocaleString();serverStatusEl.textContent='VERITY SERVER ONLINE · FLASK API';serverDot.style.background='#83e6a3';}
+ catch(error){serverStatusEl.textContent='SERVER OFFLINE · START app.py';serverDot.style.background='#ff716d';visitCountEl.textContent='—';messageCountEl.textContent='—';}
+}
+async function loadGuestbook(){
+ try{const response=await fetch('/api/guestbook');if(!response.ok)throw new Error('Could not load guestbook');const data=await response.json();guestListEl.replaceChildren();if(!data.entries.length){const empty=document.createElement('div');empty.className='empty-state';empty.textContent='NO TRANSMISSIONS YET. BE THE FIRST.';guestListEl.append(empty);}else data.entries.forEach(entry=>guestListEl.append(makeGuestEntry(entry)));}
+ catch(error){guestListEl.replaceChildren();const empty=document.createElement('div');empty.className='empty-state';empty.textContent='GUESTBOOK UNAVAILABLE — IS THE PYTHON SERVER RUNNING?';guestListEl.append(empty);}
+}
+async function loadQuote(){
+ const quoteEl=document.getElementById('quoteText');quoteEl.textContent='CONTACTING THE ORACLE…';
+ try{const response=await fetch('/api/quote');if(!response.ok)throw new Error('Quote API unavailable');const data=await response.json();quoteEl.textContent='“'+data.quote+'”';}
+ catch(error){quoteEl.textContent='“Stay round. Stay golden.” Start the Flask server to connect the oracle.';}
+}
+document.getElementById('quoteButton').addEventListener('click',loadQuote);
+guestMessage.addEventListener('input',()=>{charCount.textContent=guestMessage.value.length+' / 240';});
+guestForm.addEventListener('submit',async event=>{
+ event.preventDefault();const button=document.getElementById('guestSubmit');button.disabled=true;formStatus.textContent='TRANSMITTING…';
+ try{const response=await fetch('/api/guestbook',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:document.getElementById('guestName').value.trim(),message:guestMessage.value.trim()})});const data=await response.json();if(!response.ok)throw new Error(data.error||'Transmission failed');guestMessage.value='';charCount.textContent='0 / 240';formStatus.textContent='MESSAGE SAVED TO THE VERITY DATABASE ✓';await Promise.all([loadGuestbook(),loadStats()]);}
+ catch(error){formStatus.textContent=error.message||'Could not send the message. Try again.';}
+ finally{button.disabled=false;}
+});
+loadStats();loadGuestbook();loadQuote();
+
 </script>
 </body></html>
