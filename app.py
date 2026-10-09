@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import time
+from contextlib import contextmanager
 from pathlib import Path
 from flask import Flask, jsonify, request, send_file
 
@@ -25,9 +26,21 @@ def connect_db():
     connection.row_factory = sqlite3.Row
     return connection
 
+@contextmanager
+def db_session():
+    connection = connect_db()
+    try:
+        yield connection
+        connection.commit()
+    except Exception:
+        connection.rollback()
+        raise
+    finally:
+        connection.close()
+
 def init_db():
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with connect_db() as db:
+    with db_session() as db:
         db.execute("""
             CREATE TABLE IF NOT EXISTS guestbook (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -45,7 +58,7 @@ def init_db():
         db.execute("INSERT OR IGNORE INTO site_stats (key, value) VALUES ('visits', 0)")
 
 def increment_visits():
-    with connect_db() as db:
+    with db_session() as db:
         db.execute("UPDATE site_stats SET value = value + 1 WHERE key = 'visits'")
 
 def rate_limited(ip, window=30):
@@ -69,7 +82,7 @@ def health():
 
 @app.get("/api/stats")
 def stats():
-    with connect_db() as db:
+    with db_session() as db:
         visits = db.execute("SELECT value FROM site_stats WHERE key = 'visits'").fetchone()["value"]
         messages = db.execute("SELECT COUNT(*) AS total FROM guestbook").fetchone()["total"]
     return jsonify(visits=visits, messages=messages, status="online")
@@ -81,7 +94,7 @@ def quote():
 
 @app.get("/api/guestbook")
 def get_guestbook():
-    with connect_db() as db:
+    with db_session() as db:
         rows = db.execute(
             "SELECT id, name, message, created_at FROM guestbook ORDER BY id DESC LIMIT 12"
         ).fetchall()
@@ -108,7 +121,7 @@ def post_guestbook():
     if any(ord(char) < 32 and char not in "\n\t" for char in name + message):
         return jsonify(error="Please remove unusual control characters."), 400
 
-    with connect_db() as db:
+    with db_session() as db:
         cursor = db.execute(
             "INSERT INTO guestbook (name, message) VALUES (?, ?)", (name, message)
         )
