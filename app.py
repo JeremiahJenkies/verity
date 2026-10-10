@@ -3,7 +3,7 @@ import sqlite3
 import time
 from contextlib import contextmanager
 from pathlib import Path
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify, request, send_file, Response
 
 BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = Path(os.environ.get("VERITY_DB_PATH", BASE_DIR / "verity.db"))
@@ -74,7 +74,21 @@ def rate_limited(ip, window=30):
 @app.get("/")
 def home():
     increment_visits()
-    return send_file(BASE_DIR / "index.html")
+    html = (BASE_DIR / "index.html").read_text(encoding="utf-8")
+    patch = (BASE_DIR / "endless_hunt.js").read_text(encoding="utf-8")
+    marker = "if(cfg.quality)loadSettingsUI();"
+    if marker not in html:
+        return Response("Game patch could not be loaded: expected game hook was not found.", status=500)
+    html = html.replace(marker, marker + "\n" + patch, 1)
+    old_bounds = "player.position.x=Math.max(-48,Math.min(48,player.position.x));player.position.z=Math.max(-125,Math.min(24,player.position.z));"
+    if old_bounds not in html:
+        return Response("Game patch could not be loaded: movement hook was not found.", status=500)
+    html = html.replace(old_bounds, "ensureEndlessWorld();", 1)
+    old_update = "updateActive();renderer.render(scene,camera)"
+    if old_update not in html:
+        return Response("Game patch could not be loaded: animation hook was not found.", status=500)
+    html = html.replace(old_update, "updateActive();updateSkinwalker(dt);renderer.render(scene,camera)", 1)
+    return Response(html, mimetype="text/html")
 
 @app.get("/api/health")
 def health():
