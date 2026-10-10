@@ -19,6 +19,8 @@ function makeEndlessTree(x,z,scale=1){
 }
 function makeEndlessChunk(index){
  if(endlessChunks.has(index))return;
+ // Preserve the handcrafted starting area; generate only beyond its edges.
+ if(index>-6&&index<2){endlessChunks.add(index);return;}
  endlessChunks.add(index);
  const z=index*48;
  const floor=new THREE.Mesh(new THREE.PlaneGeometry(112,50),endlessMaterials.ground);
